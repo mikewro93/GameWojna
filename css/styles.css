@@ -1,0 +1,358 @@
+
+/* Ustalam ze dla wrappera sposobem wyswietlania jest grid
+    Tutaj ustalam OGOLNE WYMIARY SIATKI - potem moze byc problem z dostosowaniem elementow */
+
+    /* This section addresses all entities in the project */
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+  background :url('/images/nice2.jpg');
+  min-height: 800px;
+
+  /* Effect scrolling parallax  */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 1.0;
+}
+
+
+#main_section{
+
+    /* Pozycja absolutna DO RODZICA */
+    position: absolute;
+    background-color: aliceblue;
+    left: 15px;
+    right: 15px;
+    height: 600px;
+    top: 60px;
+    bottom: 60px;
+}
+
+#scores-section{
+    position: absolute;
+    background-color: rgb(255, 240, 254);
+
+    height: 100%;
+    width: 30%;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
+
+.player-section{
+
+    position: absolute;
+    width: 60px;
+    height: 60px;
+
+    background-color: rgb(80, 79, 167);
+
+
+}
+
+#player-0-section{
+
+    left: 60px;
+
+    background-color: darkblue;
+
+
+}
+#player-1-section{
+
+    right:  60px;
+
+    background-color: darkblue;
+
+
+}
+
+#card-counter{
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background-color: rgb(205, 228, 168);
+
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -0%);
+
+
+}
+
+#who-wins{
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background-color: darkcyan;
+
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
+.card{
+
+    position: absolute;
+    height: 160px;
+    width: 100px;
+    background-color: rgb(97, 139, 0);
+    top: 50%;
+
+}
+
+#card-0{
+   
+    left: 0%;
+    /* bring your own prefixes */
+    transform: translate(0%, -50%);
+}
+
+#card-1{
+
+    left: 100%;
+    /* bring your own prefixes */
+    transform: translate(-100%, -50%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nav{
+    display: grid;
+    grid-template-columns: 9fr 7fr 2fr;
+    grid-template-rows: 75px;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #5d4954;
+    font-family: 'Fjalla One', sans-serif;
+
+    /* Restrict user from selecting by dragging mouse */
+    user-select: none;
+
+    /* Animation attributes */
+    animation-name: drop_down;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+
+/* Drop down animation - MENU comes from the top */
+@keyframes drop_down{
+    0%{ transform: translatey(-100%); opacity: 0.2; }
+}
+
+nav *{
+    /* border: 2px green solid; */
+}
+
+.logo{
+
+    /* Justify self will justify NAIVGATION text to the center of this particulat gridbox */
+    place-self: center center;
+    color: rgb(221, 221, 221);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 20px;
+    padding: 18px;
+
+    animation-name: logo_dropdown;
+    animation-duration: 1s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes logo_dropdown{
+    0%{ transform: translatey(0%); opacity: 0.2; font-size: 32px }
+    25%{ transform: translatey(-10%); }
+    50%{ transform: translatey(-30%); ; font-size: 22px }
+    75%{ transform: translatey(-10%); }
+    100%{ transform: translatey(0%); opacity: 1;}
+}
+
+/* This will make LOGO text disappear after hovering */
+.logo:hover{
+    font-size: 0px;
+}
+
+/* This  make a text contained in data-hover appear */
+.logo:hover:after{
+    content: attr(data-hover);
+    font-size: 18px;
+    filter: brightness(150%);
+    animation-name: pop_up_logo;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+}
+
+@keyframes pop_up_logo {
+    0%  {font-size: 5px; }
+    100%{font-size: 20px; }
+  }
+
+
+
+.nav_bar{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(90px, auto));
+    /* grid-template-rows: minmax(auto, 70px); */
+    grid-template-rows: 50px;
+
+    /* justify-content will 'squeeze' ALL CHILDREN max towards some point */
+    justify-content: end;
+    column-gap: 10px;
+
+    /* Align-items will align CHILDREN vertically Justify-items will push them to the left*/
+    align-items: center;
+    justify-items: start;
+
+    /* background-color: red; */
+}
+
+.nav_bar li{
+    /* Deactivate dots from List elements */
+     list-style: none;
+}
+
+.nav_bar a{
+    color: rgb(221, 221, 221);
+    /* border: 2px blue solid; */
+    text-decoration: none;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 15px;
+
+
+    animation-name: pop_up_nav;
+    animation-iteration-count: 1;
+    animation-fill-mode: normal;
+    animation-duration: 1s;
+}
+
+@keyframes pop_up_nav{
+    0%{ transform: translatey(0%); opacity: 0.2;font-size: 32px}
+    25%{ transform: translatey(-10%); }
+    50%{ transform: translatey(-30%); ; font-size: 22px}
+    75%{ transform: translatey(-10%); }
+    100%{ transform: translatey(0%); opacity: 1;}
+ }
+
+.nav_bar a:hover{
+    /* color: rgb(148, 143, 143); */
+    font-size: 20px;
+    filter: brightness(150%);
+}
+.burger{
+    /* display: none; */
+    display: none;
+    padding: 2px;
+    place-self: center center;
+}
+.burger div{
+    background-color: rgb(221, 221, 221);
+    width: 28px;
+    height: 4px;
+    margin: 4px;
+}
+
+/* Defines types of media for set of rules
+Screen - style sheet should apply to all screen - devices  when width is less then*/
+@media screen and (max-width: 750px){
+
+    body{
+        /* Anty scroller */
+        overflow-x: hidden;
+    }
+    .nav_bar{
+        position: absolute;
+        right: 0px;
+        height: 90%;
+        top: 75px;
+        background-color: #5d4954;
+        display: grid;
+        grid-template-columns: 200px;
+        grid-template-rows: repeat(3, 80px);
+
+        align-items: center;
+        justify-items: center;
+        justify-content: end;
+    }
+    .burger{
+        display: block;
+        justify-self: end;
+    }
+}
+
+
+.main_section{
+
+    /* border: 2px green solid; */
+    border-radius: 15px;
+    margin: 25px; 
+    background-color: rgba(168, 227, 235, 0.2);
+
+
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 500px;
+
+    place-items: center center;
+    justify-content: center;
+
+}
+
+#article{
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+
+#article *{
+    font-size: 30px;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;;
+}
+
+#apple{
+    grid-column: 2/3;
+    grid-row: 1/2;
+
+    animation-name: apple_rotate;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-duration: 5s;
+    /* border: 2px black solid; */
+    place-self: center center;
+    margin: 40px;
+}
+
+@keyframes apple_rotate{
+    0%{ transform: rotate(20deg); opacity: 0.1;}
+    100%{ transform: translatey(0%); opacity: 1;}
+ }
