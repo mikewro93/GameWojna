@@ -22,6 +22,9 @@ body{
 }
 
 
+
+
+
 #main_section{
 
     /* Pozycja absolutna DO RODZICA */
@@ -48,32 +51,29 @@ body{
 
 
 .player-section{
-
     position: absolute;
-    width: 60px;
+    width: 200px;
     height: 60px;
-
-    background-color: rgb(80, 79, 167);
-
-
+    background-color: rgb(144, 143, 196);
 }
 
 #player-0-section{
-
     left: 60px;
-
-    background-color: darkblue;
-
-
 }
+
 #player-1-section{
-
     right:  60px;
-
-    background-color: darkblue;
-
-
 }
+
+
+img{
+max-width: 100%;
+max-height: 100%;
+display: block; 
+}
+
+
+
 
 #card-counter{
     position: absolute;
@@ -82,13 +82,10 @@ body{
     background-color: rgb(205, 228, 168);
 
     left: 50%;
-    /* bring your own prefixes */
     transform: translate(-50%, -0%);
-
-
 }
 
-#who-wins{
+#round-winner-indicator{
     position: absolute;
     height: 50px;
     width: 50px;
@@ -96,32 +93,46 @@ body{
 
     top: 50%;
     left: 50%;
-    /* bring your own prefixes */
     transform: translate(-50%, -50%);
 }
 
 .card{
 
     position: absolute;
-    height: 160px;
-    width: 100px;
+    height: 150px;
+    width: 98px;
     background-color: rgb(97, 139, 0);
     top: 50%;
-
 }
 
 #card-0{
    
-    left: 0%;
-    /* bring your own prefixes */
+    left: 5%;
     transform: translate(0%, -50%);
 }
 
 #card-1{
 
-    left: 100%;
-    /* bring your own prefixes */
+    left: 95%;
     transform: translate(-100%, -50%);
+}
+
+
+.player-score{
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    background-color: rgb(131, 132, 172);
+    top: 45%;
+    transform: translate(-50%, -0%);
+}
+
+#player-0-score{
+    left: 10%;
+}
+
+#player-1-score{
+    left: 90%;
 }
 
 
@@ -129,11 +140,33 @@ body{
 
 
 
+#button-shuffle{
+    position: absolute;
+
+    background-color: rgb(97, 139, 0);
+    top: 80%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, 0%);
+}
 
 
+#button-new-game{
+    position: absolute;
+
+    background-color: rgb(97, 139, 0);
+    top: 90%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, 0%);
+}
 
 
-
+/* Media section will step in when screen is resized */
+@media only screen and (max-width: 995px) {
+    #main_section {background-color: green;}
+    #scores-section{background-color: blue;}
+}
 
 
 
