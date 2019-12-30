@@ -7,6 +7,7 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    font-size: 20px;
 }
 
 body{
@@ -39,7 +40,7 @@ body{
 
 #scores-section{
     position: absolute;
-    background-color: rgb(255, 240, 254);
+    background-color: rgb(240, 254, 255);
 
     height: 100%;
     width: 30%;
@@ -91,9 +92,16 @@ display: block;
     width: 50px;
     background-color: darkcyan;
 
+    text-shadow: blueviolet;
+    font-size: 30px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px; 
 }
 
 .card{
@@ -101,7 +109,7 @@ display: block;
     position: absolute;
     height: 150px;
     width: 98px;
-    background-color: rgb(97, 139, 0);
+    background-color: rgb(240, 254, 255);
     top: 50%;
 }
 
@@ -167,6 +175,25 @@ display: block;
     #main_section {background-color: green;}
     #scores-section{background-color: blue;}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -247,6 +274,9 @@ nav *{
     0%  {font-size: 5px; }
     100%{font-size: 20px; }
   }
+
+
+
 
 
 

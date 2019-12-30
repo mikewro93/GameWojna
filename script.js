@@ -13,14 +13,20 @@
  var cardDiamonds = ['2D', '3D', '4D', '5D', '6D', '7D', '8D', '9D', '10D', 'JD', 'QD', 'KD', 'AD'];
 
 
-
 // Constructor of card Object
 function Card(name, value) { 
     this.name = name; 
     this.value = value; 
 } 
 
+
+
+var scores = [0, 0];
+var activePlayer, isGamePlaying;
+var actualCard = ['red_back', 'red_back'];
+
 var deckCards = [];
+
 var fillArray = function(){
     for(i=0; i<cardClubs.length ; i++){
         deckCards.push(new Card(cardClubs[i] , i+2 ));
@@ -35,11 +41,37 @@ var fillArray = function(){
         deckCards.push(new Card(cardDiamonds[i] , i+2 ));
     }
 }
-fillArray();
 
-var scores = [0, 0];
-var activePlayer, isPlaying;
-var actualCard = ['red_back', 'red_back'];
+
+var init = function(){
+
+    deckCards = [];
+    fillArray();
+
+
+    //
+    document.querySelector('#button-shuffle').textContent = 'Deal!';
+    //Set up counter
+    
+    document.querySelector('#card-counter').textContent = deckCards.length;
+    //Reset Scores
+
+    scores = [0, 0];
+
+
+    document.querySelector('#img-0').src = 'PNG' + '\\' + 'gray_back.png';
+    document.querySelector('#img-1').src = 'PNG' + '\\' + 'gray_back.png';
+    
+
+    document.querySelector('#round-winner-indicator').textContent = '?';
+
+    document.querySelector('#player-0-score').textContent = scores[0];
+    document.querySelector('#player-1-score').textContent = scores[1];
+
+
+    //
+}
+
 
 
 var drawCardDisp = function(array){
@@ -54,38 +86,85 @@ var drawCardDisp = function(array){
 }
 
 
-var dealCards = function(){
 
-    var playerOneCard, playerTwoCard;
-
-    playerOneCard = drawCardDisp(deckOfCards);
-    playerTwoCard = drawCardDisp(deckOfCards);
-
-}
+var shuffleBtnDOM = document.querySelector('#button-shuffle');
+var newGameBtnDOM = document.querySelector('#button-new-game');
 
 
-drawCardDisp(deckCards);
+shuffleBtnDOM.addEventListener('click', function(){
 
 
-
-document.querySelector('#button-shuffle').addEventListener('click', function(){
+    gameGamePlaying = 1;
 
     //IF DECK empty - WATCH for it
 
+
+
     if(deckCards.length !== 0 ){
-        var tempCard = drawCardDisp(deckCards);
+        var tempCardFir = drawCardDisp(deckCards);
 
         //check
-        console.log(tempCard.name);
+        console.log(tempCardFir.name);
     
-        document.querySelector('#img-0').src = 'PNG' + '\\' + tempCard.name + '.png';
+        document.querySelector('#img-0').src = 'PNG' + '\\' + tempCardFir.name + '.png';
+
+        var tempCardSec = drawCardDisp(deckCards);
+
+        //check
+        console.log(tempCardSec.name);
     
+        document.querySelector('#img-1').src = 'PNG' + '\\' + tempCardSec.name + '.png';
+
+
+        //Compare two 
+        if(tempCardFir.value > tempCardSec.value) {
+            scores[0] += 2;
+            document.querySelector('#round-winner-indicator').textContent = '>';
+
+            document.querySelector('#player-0-score').textContent = scores[0];
+        }
+        else if(tempCardFir.value === tempCardSec.value){
+            scores[0] += 1;
+            scores[1] += 1;
+            document.querySelector('#round-winner-indicator').textContent = '=';
+
+            document.querySelector('#player-0-score').textContent = scores[0];
+            document.querySelector('#player-1-score').textContent = scores[1];
+        }
+        else{
+            scores[1] += 2;
+            document.querySelector('#round-winner-indicator').textContent = '<';
+
+            document.querySelector('#player-1-score').textContent = scores[1];
+        }
+
+        //Delete 2 from counter 
+
+
+        document.querySelector('#card-counter').textContent -= 2;
+
+
+
+
+
+
+
+
+
+
     }else{
         document.querySelector('#button-shuffle').textContent = 'GAME OVER';
     }
 })
 
 
-var cardDOM = 
 
-cardDOM
+newGameBtnDOM.addEventListener('click', function(){
+    init();
+
+})
+
+
+
+init();
+
