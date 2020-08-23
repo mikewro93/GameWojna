@@ -1,170 +1,178 @@
 
-
-//Workout the mechanism behind the game
-
-//1. Set up score holder, active player, isPlaying
-
-// var deckOfCards = ['2C', '3C', '4C', '5C', '6C', '7C', '8C', '9C', '10C', 'JC', 'QC', 'KC', 'AC', '2H', '3H', '4H', '5H', '6H', '7H', '8H', '9H', '10H', 'JH', 'QH', 'KH', 'AH', '2S', '3S', '4S', '5S', '6S', '7S', '8S', '9S', '10S', 'JS', 'QS', 'KS', 'AS', '2D', '3D', '4D', '5D', '6D', '7D', '8D', '9D', '10D', 'JD', 'QD', 'KD', 'AD'];
+const colors = ['C', 'H', 'S', 'D'];
+let deckCards = [];
+let indicator = "?";
 
 
- var cardClubs = ['2C', '3C', '4C', '5C', '6C', '7C', '8C', '9C', '10C', 'JC', 'QC', 'KC', 'AC'];
- var cardHearts = ['2H', '3H', '4H', '5H', '6H', '7H', '8H', '9H', '10H', 'JH', 'QH', 'KH', 'AH'];
- var cardSpades = ['2S', '3S', '4S', '5S', '6S', '7S', '8S', '9S', '10S', 'JS', 'QS', 'KS', 'AS'];
- var cardDiamonds = ['2D', '3D', '4D', '5D', '6D', '7D', '8D', '9D', '10D', 'JD', 'QD', 'KD', 'AD'];
+const player0 = {
+    currentCard: {
+        name: 'gray_back',
+    },
+    score: 0,
+    indicator: '>'
+};
 
+const player1 = {
+    currentCard: {
+        name: 'gray_back',
+    },
+    score: 0,
+    indicator: '<'
+};
 
-// Constructor of card Object
-function Card(name, value) { 
-    this.name = name; 
-    this.value = value; 
-} 
-
-
-
-var scores = [0, 0];
-var activePlayer, isGamePlaying;
-var actualCard = ['red_back', 'red_back'];
-
-var deckCards = [];
-
-var fillArray = function(){
-    for(i=0; i<cardClubs.length ; i++){
-        deckCards.push(new Card(cardClubs[i] , i+2 ));
-    }
-    for(i=0; i<cardHearts.length ; i++){
-        deckCards.push(new Card(cardHearts[i] , i+2 ));
-    }
-    for(i=0; i<cardSpades.length ; i++){
-        deckCards.push(new Card(cardSpades[i] , i+2 ));
-    }
-    for(i=0; i<cardDiamonds.length ; i++){
-        deckCards.push(new Card(cardDiamonds[i] , i+2 ));
-    }
-}
-
-
-var init = function(){
-
+var init = function () {
     deckCards = [];
-    fillArray();
+    colors.forEach(color => {
+        const baseCards = [{ name: `2${color}`, value: 2 }, { name: `3${color}`, value: 3 }, { name: `4${color}`, value: 4 }, { name: `5${color}`, value: 5 }, { name: `6${color}`, value: 6 }, { name: `7${color}`, value: 7 }, { name: `8${color}`, value: 8 }, { name: `9${color}`, value: 9 }, { name: `10${color}`, value: 10 }, { name: `J${color}`, value: 11 }, { name: `Q${color}`, value: 12 }, { name: `K${color}`, value: 13 }, { name: `A${color}`, value: 14 }];
+        deckCards.push(...baseCards);
+        //...Pushuje kazdy element z osobna 
+    })
 
+    player0.score = 0;
+    player0.currentCard = {
+        name: 'gray_back'
+    };
 
-    //
-    document.querySelector('#button-shuffle').textContent = 'Deal!';
-    //Set up counter
-    
-    document.querySelector('#card-counter').textContent = deckCards.length;
-    //Reset Scores
+    player1.score = 0;
+    player1.currentCard = {
+        name: 'gray_back'
+    };
 
-    scores = [0, 0];
+    indicator = '?';
 
-
-    document.querySelector('#img-0').src = 'PNG' + '\\' + 'gray_back.png';
-    document.querySelector('#img-1').src = 'PNG' + '\\' + 'gray_back.png';
-    
-
-    document.querySelector('#round-winner-indicator').textContent = '?';
-
-    document.querySelector('#player-0-score').textContent = scores[0];
-    document.querySelector('#player-1-score').textContent = scores[1];
-
-
-    //
+    drawElements();
+    drawShuffleButton();
 }
 
-
-
-var drawCardDisp = function(array){
-        var index = Math.floor(Math.random() * array.length);
-        console.log(array[index]); // Log the item
-
-        var tempCard = array[index];
-        array.splice(index, 1); // Remove the item from the array
-        console.log(array);
-
-        return tempCard;
+const getCard = () => {
+    const index = Math.floor(Math.random() * deckCards.length);
+    const tempCard = deckCards[index];
+    deckCards.splice(index, 1); // Remove the item from the array
+    return tempCard;
 }
 
+const drawShuffleButton = () => {
+    const hasCards = deckCards.length !== 0
+    const shuffleButton = $('#button-shuffle');
+    shuffleButton.text(hasCards ? 'Deal!' : 'GAME OVER');
+    shuffleButton.attr('disabled', !hasCards);
+}
 
+const drawElements = () => {
+    $('#img-0').attr('src', `PNG\\${player0.currentCard.name}.png`);
+    $('#img-1').attr('src', `PNG\\${player1.currentCard.name}.png`);
+    $('#player-0-score').text(player0.score);
+    $('#player-1-score').text(player1.score);
+    $('#round-winner-indicator').text(indicator);
+    $('#card-counter').text(deckCards.length);
+}
 
-var shuffleBtnDOM = document.querySelector('#button-shuffle');
-var newGameBtnDOM = document.querySelector('#button-new-game');
-
-
-shuffleBtnDOM.addEventListener('click', function(){
-
-
-    gameGamePlaying = 1;
-
-    //IF DECK empty - WATCH for it
-
-
-
-    if(deckCards.length !== 0 ){
-        var tempCardFir = drawCardDisp(deckCards);
-
-        //check
-        console.log(tempCardFir.name);
-    
-        document.querySelector('#img-0').src = 'PNG' + '\\' + tempCardFir.name + '.png';
-
-        var tempCardSec = drawCardDisp(deckCards);
-
-        //check
-        console.log(tempCardSec.name);
-    
-        document.querySelector('#img-1').src = 'PNG' + '\\' + tempCardSec.name + '.png';
-
-
-        //Compare two 
-        if(tempCardFir.value > tempCardSec.value) {
-            scores[0] += 2;
-            document.querySelector('#round-winner-indicator').textContent = '>';
-
-            document.querySelector('#player-0-score').textContent = scores[0];
-        }
-        else if(tempCardFir.value === tempCardSec.value){
-            scores[0] += 1;
-            scores[1] += 1;
-            document.querySelector('#round-winner-indicator').textContent = '=';
-
-            document.querySelector('#player-0-score').textContent = scores[0];
-            document.querySelector('#player-1-score').textContent = scores[1];
-        }
-        else{
-            scores[1] += 2;
-            document.querySelector('#round-winner-indicator').textContent = '<';
-
-            document.querySelector('#player-1-score').textContent = scores[1];
-        }
-
-        //Delete 2 from counter 
-
-
-        document.querySelector('#card-counter').textContent -= 2;
-
-
-
-
-
-
-
-
-
-
-    }else{
-        document.querySelector('#button-shuffle').textContent = 'GAME OVER';
+const getWinner = () => {
+    if (player0.currentCard.value > player1.currentCard.value) {
+        return player0;
     }
-})
+    if (player0.currentCard.value < player1.currentCard.value) {
+        return player1;
+    }
+    return null;
+}
 
+const adjustScores = () => {
+    const winner = getWinner();
+    if (!winner) {
+        player0.score += 1;
+        player1.score += 1;
+        indicator = "=";
+        return;
+    }
+    winner.score += 2;
+    indicator = winner.indicator;
+}
 
-
-newGameBtnDOM.addEventListener('click', function(){
+$(document).ready(function () {
     init();
 
-})
+    $('#button-new-game').click(function () {
+        $("#card-counter").slideDown();
+        init();
+    })
+
+    $('#button-shuffle').click(function () {
+        player0.currentCard = getCard();
+        player1.currentCard = getCard();
+
+        adjustScores();
+        drawElements();
+        drawShuffleButton();
+    })
+});
 
 
+console.log('a');
 
-init();
+
+var acb = [ 33, 2 ,2 , 13];
+
+
+function mult (a){
+
+    return a*10;
+}
+
+
+var codes = [1 , 2 , 3 , 5];
+console.log(codes);
+
+// function appendCodes(users) {
+
+//     codes = users.map(function (user) {
+//         return user.code;
+//     })
+// }
+
+// var tom = {
+//     code: 'tommmy'    
+
+// }
+
+// appendCodes([
+//     {
+//         code:6
+//     },
+//     tom ={
+//         code: 15,
+//     },
+//     john = {
+//         code: 20
+//     }
+// ])
+
+console.log(codes);
+
+codes = [
+    {
+        val:4
+    },
+    {
+        val:5
+    },
+    {
+        val:19
+    }
+]
+
+function getMax(array){
+
+    var max = -Infinity;
+
+    array.forEach(function(numberxx){
+        max = Math.max(numberxx.val, max);
+    })
+    return max;
+}
+
+var xxx = getMax(codes);
+
+console.log(xxx);
+
 

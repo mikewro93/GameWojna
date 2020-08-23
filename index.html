@@ -8,68 +8,46 @@
 	<!-- link to css file as a stylesheet -->
 	<link rel="stylesheet" href=".\css\styles.css" />
 	<!-- Link to some fancy style -->
+	<!-- Link to  JQUERY -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 	<link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Josefin+Slab&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
 </head>
 
 <body>
 	<div id='main_section'>
 
-		<div id='player-0-section' class="player-section active">
-			Player 0
-		</div>
+		<div id='player-0-section' class="player-section active">Player0 </div>
 
 		<div id='scores-section'>
 
-			<div id='card-counter'>
-				52
-			</div>
+			<div id='card-counter'>0</div>
 
-			<div id='round-winner-indicator'>
+			<div id='round-winner-indicator'>0</div>
 
-			</div>
+			<img src="PNG\2C.png" id='img-0' class='card-img'>
 
-			<div id='card-0' class='card'>
-				<img src="PNG\2C.png" id='img-0'>
-			</div>
+			<img src="PNG\JD.png" id='img-1' class='card-img'>
 
+			<button type="button" id='button-shuffle' class="button">Draw cards!</button>
 
-			<div id='card-1' class='card'>
-				<img src="PNG\JD.png" id='img-1'>
-			</div>
-
-			<button type="button" id='button-shuffle'>Draw cards!</button>
-
-			<button type="button" id='button-new-game'>New game!</button>
+			<button type="button" id='button-new-game' class="button">New game!</button>
 
 		</div>
 
+		<div id='player-1-section' class="player-section">Player 1</div>
 
-		<div id='player-1-section' class="player-section">
-			Player 1
+		<div id='player-0-score' class='player-score'></div>
 
-		</div>
-
-
-		<div id='player-0-score' class='player-score'>
-			55
-		</div>
-
-
-		<div id='player-1-score' class='player-score'>
-			5533
-		</div>
+		<div id='player-1-score' class='player-score'></div>
 
 	</div>
 
-
-
-
-
 	<script src="script.js"></script>
-
 </body>
-
 </html>

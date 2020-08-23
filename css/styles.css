@@ -1,4 +1,3 @@
-
 /* Ustalam ze dla wrappera sposobem wyswietlania jest grid
     Tutaj ustalam OGOLNE WYMIARY SIATKI - potem moze byc problem z dostosowaniem elementow */
 
@@ -12,50 +11,61 @@
 
 body{
   background :url('/images/nice2.jpg');
-  min-height: 800px;
+  min-height: 650px;
 
   /* Effect scrolling parallax  */
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 1.0;
 }
-
-
-
-
 
 #main_section{
 
     /* Pozycja absolutna DO RODZICA */
     position: absolute;
-    background-color: aliceblue;
+
+    height: 600px;
     left: 15px;
     right: 15px;
-    height: 600px;
     top: 60px;
     bottom: 60px;
+
+    border-radius: 5px;
+    background: url('/images/cards1.jpg') no-repeat;
+    background-size: 100%;    /* opacity: 0.5; */
+    box-shadow: 0px 0px 50px 0px;
+    /* filter: blur(2 px); */
 }
+
 
 #scores-section{
     position: absolute;
-    background-color: rgb(240, 254, 255);
-
+    background-color: rgba(102, 53, 53, 0.85);
     height: 100%;
     width: 30%;
     top: 50%;
     left: 50%;
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
+    border-radius: 5px;
 }
-
 
 .player-section{
     position: absolute;
-    width: 200px;
-    height: 60px;
-    background-color: rgb(144, 143, 196);
+    width: 250px;
+    height: 80px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    text-transform: uppercase;
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
+    font-size: 50px;
+    background-color: rgba(102, 53, 53, 0.85);
+    border-radius: 5px;
 }
 
 #player-0-section{
@@ -73,107 +83,114 @@ max-height: 100%;
 display: block; 
 }
 
+#scores-section div {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    text-transform: uppercase;
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
+    background-color: rgba(102, 53, 53, 0.85);;
+}
 
 
 #card-counter{
-    position: absolute;
-    height: 50px;
-    width: 50px;
-    background-color: rgb(205, 228, 168);
-
+    font-size: 65px;
+    height: 100px;
+    width: 100px;
     left: 50%;
+    top: 5px;
+    border-radius: 0px 0px 5px 5px;
     transform: translate(-50%, -0%);
+    border: 1px solid black;
 }
 
 #round-winner-indicator{
-    position: absolute;
-    height: 50px;
-    width: 50px;
+    height: 70px;
+    width: 70px;
+    border-radius: 5px;
     background-color: darkcyan;
-
-    text-shadow: blueviolet;
-    font-size: 30px;
+    font-size: 45px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border: 1px solid black;
 
-
-    text-align: center;
-    vertical-align: middle;
-    line-height: 50px; 
 }
 
-.card{
-
+.card-img{
     position: absolute;
-    height: 150px;
-    width: 98px;
-    background-color: rgb(240, 254, 255);
+    height: 250px;
+    width: 163px;
     top: 50%;
 }
 
-#card-0{
-   
+#img-0{
     left: 5%;
     transform: translate(0%, -50%);
 }
 
-#card-1{
-
+#img-1{
     left: 95%;
     transform: translate(-100%, -50%);
 }
 
-
 .player-score{
     position: absolute;
-    height: 80px;
-    width: 80px;
-    background-color: rgb(131, 132, 172);
+    height: 130px;
+    width: 280px;
+    background-color: rgba(103, 110, 91, 0.5);
     top: 45%;
+    bottom: 55%;
     transform: translate(-50%, -0%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-family: 'Indie Flower', cursive;
+    font-size: 160px;
+    border-radius: 3px;
 }
 
 #player-0-score{
-    left: 10%;
+    left: 20%;
 }
 
 #player-1-score{
-    left: 90%;
+    left: 80%;
 }
 
+.button{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
 
+    width: 150px;
+    background-color: rgba(103, 110, 91, 0.5);    
 
+    border: 1px solid black;
+    border-radius: 5px;
 
-
+    font-family: 'Arial';
+    font-weight: bold;     
+    text-transform: uppercase;
+}
 
 #button-shuffle{
-    position: absolute;
-
-    background-color: rgb(97, 139, 0);
     top: 80%;
-    left: 50%;
-    /* bring your own prefixes */
-    transform: translate(-50%, 0%);
+    height: 50px;
 }
-
 
 #button-new-game{
-    position: absolute;
-
-    background-color: rgb(97, 139, 0);
     top: 90%;
-    left: 50%;
-    /* bring your own prefixes */
-    transform: translate(-50%, 0%);
+    height: 30px;
 }
-
 
 /* Media section will step in when screen is resized */
-@media only screen and (max-width: 995px) {
-    #main_section {background-color: green;}
-    #scores-section{background-color: blue;}
+@media only screen and (max-width: 1075px) {
+    #scores-section {display: none;}
 }
 
 
@@ -192,230 +209,3 @@ display: block;
 
 
 
-
-
-
-
-
-
-
-nav{
-    display: grid;
-    grid-template-columns: 9fr 7fr 2fr;
-    grid-template-rows: 75px;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: #5d4954;
-    font-family: 'Fjalla One', sans-serif;
-
-    /* Restrict user from selecting by dragging mouse */
-    user-select: none;
-
-    /* Animation attributes */
-    animation-name: drop_down;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-    animation-timing-function: ease-in-out;
-}
-
-/* Drop down animation - MENU comes from the top */
-@keyframes drop_down{
-    0%{ transform: translatey(-100%); opacity: 0.2; }
-}
-
-nav *{
-    /* border: 2px green solid; */
-}
-
-.logo{
-
-    /* Justify self will justify NAIVGATION text to the center of this particulat gridbox */
-    place-self: center center;
-    color: rgb(221, 221, 221);
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    font-size: 20px;
-    padding: 18px;
-
-    animation-name: logo_dropdown;
-    animation-duration: 1s;
-    animation-direction: normal;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-    animation-timing-function: ease-in-out;
-}
-
-@keyframes logo_dropdown{
-    0%{ transform: translatey(0%); opacity: 0.2; font-size: 32px }
-    25%{ transform: translatey(-10%); }
-    50%{ transform: translatey(-30%); ; font-size: 22px }
-    75%{ transform: translatey(-10%); }
-    100%{ transform: translatey(0%); opacity: 1;}
-}
-
-/* This will make LOGO text disappear after hovering */
-.logo:hover{
-    font-size: 0px;
-}
-
-/* This  make a text contained in data-hover appear */
-.logo:hover:after{
-    content: attr(data-hover);
-    font-size: 18px;
-    filter: brightness(150%);
-    animation-name: pop_up_logo;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    animation-duration: 1s;
-}
-
-@keyframes pop_up_logo {
-    0%  {font-size: 5px; }
-    100%{font-size: 20px; }
-  }
-
-
-
-
-
-
-.nav_bar{
-    display: grid;
-    grid-template-columns: repeat(3, minmax(90px, auto));
-    /* grid-template-rows: minmax(auto, 70px); */
-    grid-template-rows: 50px;
-
-    /* justify-content will 'squeeze' ALL CHILDREN max towards some point */
-    justify-content: end;
-    column-gap: 10px;
-
-    /* Align-items will align CHILDREN vertically Justify-items will push them to the left*/
-    align-items: center;
-    justify-items: start;
-
-    /* background-color: red; */
-}
-
-.nav_bar li{
-    /* Deactivate dots from List elements */
-     list-style: none;
-}
-
-.nav_bar a{
-    color: rgb(221, 221, 221);
-    /* border: 2px blue solid; */
-    text-decoration: none;
-    letter-spacing: 2px;
-    font-weight: bold;
-    font-size: 15px;
-
-
-    animation-name: pop_up_nav;
-    animation-iteration-count: 1;
-    animation-fill-mode: normal;
-    animation-duration: 1s;
-}
-
-@keyframes pop_up_nav{
-    0%{ transform: translatey(0%); opacity: 0.2;font-size: 32px}
-    25%{ transform: translatey(-10%); }
-    50%{ transform: translatey(-30%); ; font-size: 22px}
-    75%{ transform: translatey(-10%); }
-    100%{ transform: translatey(0%); opacity: 1;}
- }
-
-.nav_bar a:hover{
-    /* color: rgb(148, 143, 143); */
-    font-size: 20px;
-    filter: brightness(150%);
-}
-.burger{
-    /* display: none; */
-    display: none;
-    padding: 2px;
-    place-self: center center;
-}
-.burger div{
-    background-color: rgb(221, 221, 221);
-    width: 28px;
-    height: 4px;
-    margin: 4px;
-}
-
-/* Defines types of media for set of rules
-Screen - style sheet should apply to all screen - devices  when width is less then*/
-@media screen and (max-width: 750px){
-
-    body{
-        /* Anty scroller */
-        overflow-x: hidden;
-    }
-    .nav_bar{
-        position: absolute;
-        right: 0px;
-        height: 90%;
-        top: 75px;
-        background-color: #5d4954;
-        display: grid;
-        grid-template-columns: 200px;
-        grid-template-rows: repeat(3, 80px);
-
-        align-items: center;
-        justify-items: center;
-        justify-content: end;
-    }
-    .burger{
-        display: block;
-        justify-self: end;
-    }
-}
-
-
-.main_section{
-
-    /* border: 2px green solid; */
-    border-radius: 15px;
-    margin: 25px; 
-    background-color: rgba(168, 227, 235, 0.2);
-
-
-
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 500px;
-
-    place-items: center center;
-    justify-content: center;
-
-}
-
-#article{
-    grid-column: 1/2;
-    grid-row: 1/2;
-}
-
-#article *{
-    font-size: 30px;
-    font-family: 'Orbitron', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 3px;;
-}
-
-#apple{
-    grid-column: 2/3;
-    grid-row: 1/2;
-
-    animation-name: apple_rotate;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    animation-duration: 5s;
-    /* border: 2px black solid; */
-    place-self: center center;
-    margin: 40px;
-}
-
-@keyframes apple_rotate{
-    0%{ transform: rotate(20deg); opacity: 0.1;}
-    100%{ transform: translatey(0%); opacity: 1;}
- }
